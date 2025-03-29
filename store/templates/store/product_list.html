@@ -1,0 +1,29 @@
+{% extends 'store/index.html' %}
+
+{% block title %}
+   Product list
+{% endblock title %}
+
+{% block content %}
+{% for products in product_list %}
+    <div class="card-group">
+    {% for product in products %}
+                <div class="card">
+                    <a href="./product_detail/product_detail.html">
+                        <img src="./images/123.webp" class="card-img-top" alt="Samsung">
+                    </a>
+
+            <div class="card-body">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.info|truncatewords:10 }}</p>
+                    <p class="card-text">Price: {{ product.price }}</p>
+                <ul class="category_list">
+                    <li><a href="">Смартфоны</a></li>
+                    <li><a href="">Планшеты</a></li>
+                </ul>
+                </div>
+                </div>
+    {% endfor %}
+            </div>
+{% endfor %}
+{% endblock %}
