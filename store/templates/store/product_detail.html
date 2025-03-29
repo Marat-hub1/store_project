@@ -1,73 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet" 
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-    crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-    <title>Document</title>
-   
-</head>
-<body>
-    <header class="fixed-top">
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-            <div class="container-fluid">
-            <a class="navbar-brand" href="#">Смартфоны</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Категории
-                    </a>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Смартфоны</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Планшеты</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Ноутбуки</a></li>
-                    </ul>
-                </li>
-                </ul>
-                <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container mt-5 pt-3">
-        <main>
-                <div class="card">
+{% extends 'store/index.html' %}
+
+{% block title %}
+   {{ product.title }}
+{% endblock title %}
+
+{% block content %}
+<div class="card">
                     <img src="../images/123.webp" class="card-img-top" alt="Samsung">
                   <div class="card-body">
-                    <h5 class="card-title">Samsung</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. In delectus minus maiores rem animi at cupiditate rerum quasi perspiciatis iste veniam, impedit doloribus doloremque?
-                        Sunt, voluptas deleniti quisquam excepturi ratione cum molestiae, rem distinctio ad, consectetur autem earum mollitia laboriosam dolores molestias reiciendis neque temporibus.
-                        Maxime dicta, fugit a ducimus ab neque. At possimus fugiat ipsa sint neque vitae. Consectetur aspernatur harum illum! Enim quae inventore tenetur sit in.
-                        Molestias explicabo officia asperiores, odit fugiat repellendus consectetur quibusdam ea, enim est reprehenderit eius minima consequuntur suscipit, doloribus error quis.
-                        Obcaecati voluptatum exercitationem et asperiores non iusto perferendis harum! Mollitia voluptatibus fugiat, doloremque excepturi sint ratione sed voluptas unde voluptatum?
-                        Cum dolorem atque magni ad vero sint, ullam veniam voluptatibus exercitationem cumque totam illum debitis rerum eveniet doloribus itaque, suscipit ratione omnis ducimus in reprehenderit!
-                        Deleniti pariatur exercitationem soluta commodi, labore assumenda illum at similique modi illo minus accusamus animi rerum autem voluptatibus itaque ipsam.
-                        Pariatur quidem facere totam sapiente facilis earum ex voluptatum fugit itaque nostrum. Officia qui eum nisi? Blanditiis sed beatae accusantium exercitationem.
-                        Autem architecto ipsam id praesentium commodi aspernatur magnam earum, distinctio ad cupiditate aut. Neque eum nobis consequatur ducimus nostrum nisi, quae eius eaque illo aliquid facilis nemo sed quod distinctio asperiores, cum at?
-                        Doloremque nobis impedit ad quibusdam aliquam! Sapiente, quas sit voluptates totam facilis fugit consectetur explicabo illum? Nostrum minima illo, ea illum architecto quibusdam error fuga dolor cumque blanditiis voluptatibus sequi consectetur recusandae beatae!
-                        Cupiditate magni tenetur assumenda eligendi dolores, voluptatum quod voluptatem suscipit eum a, vero officiis ipsam architecto porro enim tempore, maxime in et ratione totam excepturi est recusandae! Doloremque repellendus ullam modi!
-                        Sunt placeat, facere necessitatibus assumenda possimus temporibus ad praesentium beatae vitae odit veritatis rem voluptatum? Quasi fugiat ducimus quis. Tenetur delectus minima in voluptatum hic aliquid sint. Incidunt!
-                    </p>
+                   <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.info}}</p>
+                    <p class="card-text">Price: {{ product.price }}</p>
                 <ul class="category_list">
                     <li><a href="">Смартфоны</a></li>
                     <li><a href="">Планшеты</a></li>
@@ -78,39 +21,35 @@
                 </button>
                   </div>
                 </div>
-        </main>
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Выбраный товар</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{ product.title }}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form method="post" action="">
                 <div class="mb-3">
                     <label for="user_name" class="form-label">You Name</label>
-                    <input type="text" class="form-control" name="user_name" 
+                    <input type="text" class="form-control" name="user_name"
                     id="user_name" required>
                   </div>
                 <div class="mb-3">
                   <label for="user_email" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="user_email" 
+                  <input type="email" class="form-control" id="user_email"
                   aria-describedby="emailHelp" name="user_email" required>
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
+                <input type="hidden" name="product_id" value="{{ product.id }}" readonly>
                 <button type="submit" class="btn btn-success">Order</button>
               </form>
         </div>
       </div>
     </div>
   </div>
-    </div>
-    <footer class=" footer bg-dark text-info d-flex justify-content-center
-    align-items-center">
-        <span >
-            Tel: 89923096260
-        </span>
-    </footer>
-</body>
-</html>
+{% endblock %}
+
+
+
