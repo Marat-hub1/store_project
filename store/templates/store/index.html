@@ -39,13 +39,14 @@
                     Категории
                     </a>
                     <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Смартфоны</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Планшеты</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Ноутбуки</a></li>
+                        {% for category in categories %}
+                    <li><a class="dropdown-item" href="#">{{ category.title }}</a>
+                    </li>
+                    <li><hr class="dropdown-divider">
+                    </li>
+                        {% endfor %}
                     </ul>
-                </li>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search" method="get" action="">
                     <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
