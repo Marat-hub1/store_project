@@ -6,14 +6,15 @@
 
 {% block content %}
 <div class="card">
-                    <img src="../images/123.webp" class="card-img-top" alt="Samsung">
+    {% include 'store/includes/image.html'%}
                   <div class="card-body">
                    <h5 class="card-title">{{ product.title }}</h5>
                     <p class="card-text">{{ product.info}}</p>
                     <p class="card-text">Price: {{ product.price }}</p>
                 <ul class="category_list">
-                    <li><a href="">Смартфоны</a></li>
-                    <li><a href="">Планшеты</a></li>
+                    {% for category in product.categories.all %}
+                    <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+                    {% endfor %}
                 </ul>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
