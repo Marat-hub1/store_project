@@ -5,6 +5,10 @@
 {% endblock title %}
 
 {% block content %}
+{% if category.products.all|length == 0 %}
+    <h1>Товары категории "{{ category.title }}" на данный момент отсутствуют:</h1>
+{% else %}
     <h1>Товары категории "{{ category.title }}":</h1>
 {% include 'store/includes/card_group.html'%}
+{% endif %}
 {% endblock %}

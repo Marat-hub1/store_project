@@ -31,7 +31,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form method="post" action="">
+            <form method="post" action="/save_order">
+                {% csrf_token %}
                 <div class="mb-3">
                     <label for="user_name" class="form-label">You Name</label>
                     <input type="text" class="form-control" name="user_name"
