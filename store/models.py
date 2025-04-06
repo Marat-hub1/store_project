@@ -31,6 +31,7 @@ class Category(models.Model):
 class Order(models.Model):
     name = models.CharField(max_length=150)
     email = models.EmailField(max_length=150)
+    telefone=models.CharField(max_length=50, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
 
     def __str__(self) -> str:

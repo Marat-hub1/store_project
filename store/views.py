@@ -10,7 +10,8 @@ from .models import *
 from django.db.models import Q, QuerySet
 from django.views.generic import ListView, DetailView
 from .utils import CategoriesMixin
-from django.http import HttpResponse
+# from django.http import HttpRespo
+import telebot
 
 # def build_template(lst: list, cols: int) -> list[list]:
 #     return [ lst[i:i + cols] for i in  range(0,len(lst),cols)]
@@ -108,8 +109,11 @@ def save_order(request):
     order = Order()
     order.name = request.POST['user_name']
     order.email = request.POST['user_email']
+    order.telefone = request.POST['user_telefon']
     order.product = Product.objects.get(pk=request.POST['product_id'])
+    tele = str(order.name)+str(order.telefone)+str(order.product)
     order.save()
+    telegram(tele)
     return render(
         request,
         'store/order.html',
@@ -118,5 +122,11 @@ def save_order(request):
             'order':order,
         }
     )
+def telegram(message):
+    adres =  't.me/Markovis_bot'
+    token = '7810517784:AAEgikfqg0nbZo9E7Bv0trFtlKHpOYmj78c'
+    chat = '5155745490'
+    bot = telebot.TeleBot(token)
+    bot.send_message(chat, message)
 
 
