@@ -1,7 +1,6 @@
-{% for products in product_list %}
-    <div class="card-group">
-    {% for product in products %}
-                <div class="card">
+
+
+        <div class="col-lg-4 col-md-6 col-sm-12" >
                     <a href="{{ product.get_absolute_url }}">
                         {% include 'store/includes/image.html'%}
                     </a>
@@ -12,11 +11,13 @@
                     <p class="card-text">Price: {{ product.price }}</p>
                 <ul class="category_list">
                     {% for category in product.categories.all %}
-                    <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+                    <li>
+                        <a href="{{ category.get_absolute_url }}">
+                            {{ category.title }}
+                        </a>
+                    </li>
                     {% endfor %}
                 </ul>
                 </div>
                 </div>
-    {% endfor %}
-            </div>
-{% endfor %}
+

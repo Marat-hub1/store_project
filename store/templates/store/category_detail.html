@@ -9,6 +9,10 @@
     <h1>Товары категории "{{ category.title }}" на данный момент отсутствуют:</h1>
 {% else %}
     <h1>Товары категории "{{ category.title }}":</h1>
-{% include 'store/includes/card_group.html'%}
+
+        {% for product in category.products.all %}
+            {% include 'store/includes/card.html'%}
+        {% endfor %}
+
 {% endif %}
 {% endblock %}

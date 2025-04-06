@@ -1,0 +1,9 @@
+{% extends 'store/index.html' %}
+
+{% block title %}
+{{ order.product.title }}
+{% endblock title %}
+
+{% block content %}
+<h1>Привет, {{ order.name }} Ваш заказ на {{ order.product.title }} по цене {{ order.product.price }} обрабатывается!</h1>
+{% endblock %}

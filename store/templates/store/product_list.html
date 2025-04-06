@@ -5,5 +5,7 @@
 {% endblock title %}
 
 {% block content %}
-{% include 'store/includes/card_group.html'%}
+        {% for product in product_list %}
+            {% include 'store/includes/card.html'%}
+        {% endfor %}
 {% endblock %}

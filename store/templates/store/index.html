@@ -41,7 +41,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         {% for category in categories %}
-                    <li><a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.title }}</a>
+                    <li>
+                        <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.title }}
+                        </a>
                     </li>
                     <li><hr class="dropdown-divider">
                     </li>
@@ -57,13 +59,17 @@
             </div>
         </nav>
     </header>
-    <div class="container mt-5 pt-3">
+
         <main>
-            {% block content %}
-            No content
-            {% endblock %}
+            <div class="container mt-5 pt-4 ">
+                <div class="row justify-content-center">
+                    {% block content %}
+                    No content
+                    {% endblock %}
+                </div>
+            </div>
         </main>
-    </div>
+
     <footer class=" footer bg-dark text-info d-flex justify-content-center
     align-items-center">
         <span >
