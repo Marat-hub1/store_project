@@ -1,8 +1,12 @@
+
+from http.client import HTTPResponse
 from itertools import product
 from lib2to3.fixes.fix_input import context
 from typing import AnyStr
 
+from django.contrib.auth import authenticate, login as user_login, logout as user_logout
 from django.db.models.sql import Query
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template.defaultfilters import title
 
@@ -12,6 +16,7 @@ from django.views.generic import ListView, DetailView
 from .utils import CategoriesMixin
 # from django.http import HttpRespo
 import telebot
+
 
 # def build_template(lst: list, cols: int) -> list[list]:
 #     return [ lst[i:i + cols] for i in  range(0,len(lst),cols)]
@@ -129,4 +134,52 @@ def telegram(message):
     bot = telebot.TeleBot(token)
     bot.send_message(chat, message)
 
+def login_view(request):
+
+    if request.method == 'POST':
+
+        login = request.POST.get('login')
+        password = request.POST.get('password')
+
+        usr = authenticate(request, username=login, password=password)
+        if usr is not None:
+            user_login(request, usr)
+            return HttpResponseRedirect('/')
+        else:
+            return render(request, 'auth/login.html')
+
+    return render (request, 'auth/login.html')
+
+
+def home(request):
+
+    users = CustomUser.object.all()
+
+    return render(request, 'store/index.html', {'users':users})
+
+
+
+def reg_view(request,):
+    if request.method == 'POST':
+
+        login = request.POST.get('login')
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+        
+        if password == password2:
+            
+            CustomUser.objects.create_user(login, password)
+            
+            usr = authenticate(request, username=login, password=password)
+            if usr is not None:
+                user_login(request, usr)
+                return HttpResponseRedirect('/')
+            else:
+                return render(request, 'auth/login.html')
+    
+    return render(request, 'auth/reg.html')
+
+def logout(request):
+    user_logout(request)
+    return HttpResponseRedirect('/login')
 

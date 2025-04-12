@@ -1,4 +1,11 @@
 {% extends 'store/index.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+    <title>Title</title>
+</head>
 
 {% block title %}
    {{ product.title }}

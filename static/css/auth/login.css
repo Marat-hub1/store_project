@@ -1,0 +1,66 @@
+html, body{
+    background-color: #0E21A0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: 35vw 30vw 35vw;
+}
+
+form{
+    color: whitesmoke;
+    font-size: 40px;
+    margin-top: 50%;
+}
+
+.input-block{
+    margin-bottom: 1rem;
+}
+
+.input-block > label, .input-block > input {
+    width: 100%;
+}
+
+input {
+    font-size: 20px;
+    outline: none;
+    border: 1px solid #4D2DB7;
+    border-radius: 0.2rem 0.5rem ;
+    background-color: inherit;
+    color: whitesmoke;
+    font-weight: 600;
+}
+
+.button-block{
+    text-align: center;
+}
+
+input:focus{
+    -webkit-box-shadow: 5px 5px 30px 43px rgba(141, 29, 195, 0.78);
+    -moz-box-shadow: 5px 5px 30px 43px rgba(141, 29, 195, 0.78);
+    box-shadow: 5px 5px 30px 43px rgba(141, 29, 195, 0.78);
+}
+
+
+
+button{
+    font-size: 20px;
+    outline: none;
+    border: 1px solid #4D2DB7;
+    border-radius: 0.2rem 0.5rem ;
+    background-color: inherit;
+    color: whitesmoke;
+    font-weight: 600;
+    cursor: pointer;
+    width: 50%;
+}
+
+button:hover{
+    background-color: #9D44C0;
+}
+
