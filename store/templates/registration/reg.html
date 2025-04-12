@@ -1,0 +1,9 @@
+{% extends 'store/index.html' %}
+{% block content %}
+    <h2>Регистрация</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Отправить">
+    </form>
+{% endblock %}

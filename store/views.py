@@ -4,11 +4,21 @@ from itertools import product
 from lib2to3.fixes.fix_input import context
 from typing import AnyStr
 
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as user_login, logout as user_logout
 from django.db.models.sql import Query
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template.defaultfilters import title
+
+from django.shortcuts import render, redirect
+from django.template.defaultfilters import title
+
+from .models import *
+from .forms import *
+from django.contrib.auth.models import User
+from django.contrib.auth import login
+import random
 
 from .models import *
 from django.db.models import Q, QuerySet
@@ -134,52 +144,78 @@ def telegram(message):
     bot = telebot.TeleBot(token)
     bot.send_message(chat, message)
 
-def login_view(request):
+# def login_view(request):
+#
+#     if request.method == 'POST':
+#
+#         login = request.POST.get('login')
+#         password = request.POST.get('password')
+#
+#         usr = authenticate(request, username=login, password=password)
+#         if usr is not None:
+#             user_login(request, usr)
+#             return HttpResponseRedirect('/')
+#         else:
+#             return render(request, 'registration/login.html')
+#
+#     return render (request, 'registration/login.html')
+#
+#
+# # def home(request):
+# #
+# #     users = User.objects.all()
+# #
+# #     return render(request, 'store/index.html', {'users':users})
+#
+#
+#
+# def reg_view(request,):
+#     if request.method == 'POST':
+#
+#         login = request.POST.get('login')
+#         password = request.POST.get('password')
+#         password2 = request.POST.get('password2')
+#
+#         if password == password2:
+#
+#             User.objects.create_user(login, password)
+#
+#             usr = authenticate(request, username=login, password=password)
+#             if usr is not None:
+#                 user_login(request, usr)
+#                 return HttpResponseRedirect('/')
+#             else:
+#                 return render(request, 'registration/login.html')
+#
+#     return render(request, 'registration/reg.html')
+#
+# def logout(request):
+#     user_logout(request)
+#     return HttpResponseRedirect('/login')
 
-    if request.method == 'POST':
 
-        login = request.POST.get('login')
-        password = request.POST.get('password')
+def registration (request):
+    if request.POST: #нажали на кнопку отправить
+        print(1)
+        form= UserForm(request.POST)#видим заполненную форму
+        if form.is_valid(): #проверка формы на корректность
+            print(2)
+            k1 = form.cleaned_data['username']#собираем данные
+            k2= form.cleaned_data['email']
+            k3 = form.cleaned_data['password1']
+            k4 = form.cleaned_data['first_name']
+            k5 = form.cleaned_data['last_name']
+            User.objects.create_user(username=k1,email=k2,password=k3) #создает запись в таблице
+            myuser=User.objects.get(username=k1)#находим нового пользователя
+            myuser.first_name=k4#добавляем имя
+            myuser.lust_name = k5
+            myuser.save()#сохраняем таблицу
+            # Profile.objects.create(user=myuser)#создает запись в таблице профиль
+            login(request,myuser)#автовход на сайт
+            return redirect('index')
 
-        usr = authenticate(request, username=login, password=password)
-        if usr is not None:
-            user_login(request, usr)
-            return HttpResponseRedirect('/')
-        else:
-            return render(request, 'auth/login.html')
 
-    return render (request, 'auth/login.html')
-
-
-def home(request):
-
-    users = CustomUser.object.all()
-
-    return render(request, 'store/index.html', {'users':users})
-
-
-
-def reg_view(request,):
-    if request.method == 'POST':
-
-        login = request.POST.get('login')
-        password = request.POST.get('password')
-        password2 = request.POST.get('password2')
-        
-        if password == password2:
-            
-            CustomUser.objects.create_user(login, password)
-            
-            usr = authenticate(request, username=login, password=password)
-            if usr is not None:
-                user_login(request, usr)
-                return HttpResponseRedirect('/')
-            else:
-                return render(request, 'auth/login.html')
-    
-    return render(request, 'auth/reg.html')
-
-def logout(request):
-    user_logout(request)
-    return HttpResponseRedirect('/login')
-
+    else:
+        form = UserForm()
+    data = {'form':form}
+    return render(request,'registration/reg.html', data)

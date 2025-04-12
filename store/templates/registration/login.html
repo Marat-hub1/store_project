@@ -1,0 +1,11 @@
+{% extends 'store/index.html' %}
+
+{% block content %}
+    <form action="" method="post">
+    {% csrf_token %}
+        {{ form.as_div }}
+        <a href="{% url 'password_reset' %}">Забыл пароль</a>
+        <input type="submit" value="OK">
+    </form>
+    <a href="{% url 'reg' %}">Регистрация</a>
+{% endblock %}
